@@ -10,6 +10,7 @@ public class Body {
     private Vector3 position; // position of the center.
     private Vector3 currentMovement;
     private Color color; // for drawing the body.
+    private Vector3 force;
 
     //TODO: define constructor.
     public Body(String name, double mass, double radius, Vector3 position, Vector3 currentMovement, Color color) {
@@ -29,6 +30,14 @@ public class Body {
 
     public String getName() {
         return name;
+    }
+
+    public void setForce(Vector3 force) {
+        this.force = force;
+    }
+
+    public Vector3 getForce() {
+        return force;
     }
 
     //Returns a vector representing the gravitational force exerted by 'body' on this body.
@@ -54,6 +63,12 @@ public class Body {
         Vector3 oldPosition = this.position;
         this.position = currentMovement.plus(this.position.plus(force.times(1 / this.mass)));
         this.currentMovement = position.minus(oldPosition); // new minus old position.
+    }
+
+    public void move(){
+        Vector3 oldPosition = this.position;
+        this.position = currentMovement.plus(this.position.plus(force.times(1 / this.mass)));
+        this.currentMovement = position.minus(oldPosition);
     }
 
     // Returns a string with the information about this body including

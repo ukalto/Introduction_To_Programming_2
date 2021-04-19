@@ -25,6 +25,14 @@ public class CosmicSystemTree {
         }
         return true;
     }
+    
+    public String determineLargerSide(){
+        int countLeft = root.size(root.firstLeft(root));
+        int countRight = root.size(root.firstRight(root));
+        if(countLeft > countRight) return "Left";
+        else if(countLeft < countRight) return "Right";
+        else return "Even";
+    }
 
     // Returns the cosmic system in which a body with the specified name exists.
     // For example, if the specified name is "Europa", the system of Jupiter (Jupiter, Io,

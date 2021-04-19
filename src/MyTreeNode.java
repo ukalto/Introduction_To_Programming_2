@@ -66,6 +66,14 @@ public class MyTreeNode {
         return 1 + size(root.left) + size(root.right);
     }
 
+    public MyTreeNode firstLeft(MyTreeNode root){
+        return root.left;
+    }
+
+    public MyTreeNode firstRight(MyTreeNode root){
+        return root.right;
+    }
+
     public String toString() {
         if (left != null && right != null)
             return "(" + key + "," + value.getName() + ")\n" + left.toString() + right.toString();

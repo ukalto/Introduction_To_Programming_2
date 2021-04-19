@@ -25,7 +25,6 @@ public class Simulation {
         cs.add(mercury);
         cs.add(venus);
         cs.add(mars);
-        Vector3[] forceOnBody = new Vector3[cs.size()];
 
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setXscale(-2 * AU, 2 * AU);
@@ -40,18 +39,18 @@ public class Simulation {
             seconds++; // each iteration computes the movement of the celestial bodies within one second.
             // for each body (with index i): compute the total force exerted on it.
             for (int i = 0; i < cs.size(); i++) {
-                forceOnBody[i] = new Vector3(0, 0, 0); // begin with zero
+                cs.get(i).setForce(new Vector3(0, 0, 0)); // begin with zero
                 for (int j = 0; j < cs.size(); j++) {
                     if (i == j) continue;
                     Vector3 forceToAdd = cs.get(i).gravitationalForce(cs.get(j));
-                    forceOnBody[i] = forceToAdd.plus(forceOnBody[i]);
+                    cs.get(i).setForce(forceToAdd.plus(cs.get(i).getForce()));
                 }
             }
             // now forceOnBody[i] holds the force vector exerted on body with index i.
 
             // for each body (with index i): move it according to the total force exerted on it.
             for (int i = 0; i < cs.size(); i++) {
-                cs.get(i).move(forceOnBody[i]);
+                cs.get(i).move();
             }
 
             // show all movements in StdDraw canvas only every 3 hours (to speed up the simulation)

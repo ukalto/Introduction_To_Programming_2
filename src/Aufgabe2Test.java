@@ -92,6 +92,8 @@ public class Aufgabe2Test {
         (Moon,Earth System)
         (Phobos,Mars System)
          */
+
+        System.out.println(cst.determineLargerSide());
     }
 
     public static void testComparison(Object first, Object second, boolean expected) {
