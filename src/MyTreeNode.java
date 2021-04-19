@@ -81,4 +81,22 @@ public class MyTreeNode {
         else if(right != null) return "(" + key + "," + value.getName() + ")\n" + right.toString();
         return "(" + key + "," + value.getName() + ")\n";
     }
+
+    public void draw(double x, double y, boolean textLeft) {
+        StdDraw.filledCircle(x, y, 0.02);
+        if (textLeft) {
+            StdDraw.textLeft(x + 0.05, y, key + " (" + value.getName() + ")");
+        } else {
+            StdDraw.textRight(x - 0.05, y, key + " (" + value.getName() + ")");
+        }
+
+        if (left != null) {
+            StdDraw.line(x, y, x - 0.2, y - 0.1);
+            left.draw(x - 0.2, y - 0.1, false);
+        }
+        if (right != null) {
+            StdDraw.line(x, y, x + 0.2, y - 0.1);
+            right.draw(x + 0.2, y - 0.1, true);
+        }
+    }
 }

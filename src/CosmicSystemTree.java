@@ -63,11 +63,15 @@ public class CosmicSystemTree {
 
     //BONUS TASK: sets a new canvas and draws the tree using StdDraw
     public void drawTree() {
-        //TODO: implement method (optional bonus task)
+        //TODO: implement method
+        StdDraw.setCanvasSize(1000, 500);
+        StdDraw.setXscale(0, 2);
+        StdDraw.setYscale(0, 1);
+
+        if (root != null) {
+            root.draw(1, 0.95, false);
+        }
     }
 
     //TODO: Define additional class(es) implementing the binary tree (either here or outside class).
-
 }
-
-
