@@ -3,7 +3,7 @@ public class CosmicSystem {
 
     //TODO: Define variables.
     private String name;
-    private MyListNode head;
+    private MyDoubleListNode head;
 
     // Initialises this system as an empty system with a name.
     public CosmicSystem(String name) {
@@ -20,14 +20,14 @@ public class CosmicSystem {
     // returns 'true' if the list was changed as a result of the call and 'false' otherwise.
     public boolean add(Body body) {
         //TODO: implement method.
-        MyListNode node = new MyListNode(body);
-        MyListNode current = head;
-        node.setNext(null);
+        if(body == null) return false;
+        MyDoubleListNode node = new MyDoubleListNode(body);
         if (head == null) {
             node.setPrev(null);
             head = node;
             return true;
         }
+        MyDoubleListNode current = head;
         if (current.hasValue(body)) return false;
         while (current.next() != null) {
             current = current.next();
@@ -42,7 +42,7 @@ public class CosmicSystem {
     // Precondition: 'i' is a valid index.
     public Body get(int i) {
         //TODO: implement method.
-        MyListNode current = head;
+        MyDoubleListNode current = head;
         while (i > 0) {
             i--;
             current = current.next();
@@ -53,7 +53,7 @@ public class CosmicSystem {
     // Returns the body with the specified name or 'null' if no such body exits in the list.
     public Body get(String name) {
         //TODO: implement method.
-        MyListNode current = head;
+        MyDoubleListNode current = head;
         while (current != null) {
             if (current.value().getName().equals(name)) return current.value();
             current = current.next();
@@ -64,7 +64,7 @@ public class CosmicSystem {
     // Returns the body with the same name as the input body or 'null' if no such body exits in the list.
     public Body get(Body body) {
         //TODO: implement method.
-        MyListNode current = head;
+        MyDoubleListNode current = head;
         while (current != null) {
             if (current.value().getName().equals(body.getName())) return current.value();
             current = current.next();
@@ -76,7 +76,7 @@ public class CosmicSystem {
     public int size() {
         //TODO: implement method.
         int counter = 0;
-        MyListNode current = head;
+        MyDoubleListNode current = head;
         while (current != null) {
             current = current.next();
             counter++;
@@ -84,9 +84,9 @@ public class CosmicSystem {
         return counter;
     }
 
-    public MyListNode getNodeWithI(int i) {
+    public MyDoubleListNode getNodeWithI(int i) {
         if (i < 0 || i > size()) return null;
-        MyListNode current = head;
+        MyDoubleListNode current = head;
         while (i > 0) {
             i--;
             current = current.next();
@@ -94,8 +94,8 @@ public class CosmicSystem {
         return current;
     }
 
-    public MyListNode getNodeWithBody(Body body) {
-        MyListNode current = head;
+    public MyDoubleListNode getNodeWithBody(Body body) {
+        MyDoubleListNode current = head;
         while (current != null) {
             if (current.value().getName().equals(body.getName())) return current;
             current = current.next();
@@ -112,13 +112,14 @@ public class CosmicSystem {
     // Returns 'true' if the list was changed as a result of
     // the call, 'false' otherwise.
     public boolean add(int i, Body body) {
-        MyListNode node = new MyListNode(body);
-        MyListNode current = head;
+        MyDoubleListNode node = new MyDoubleListNode(body);
+        if(head == null && i != 0) return false;
+        MyDoubleListNode current = head;
         if (i < 0 || i > size()) return false;
         if (current.hasValue(body)) return false;
         current = getNodeWithI(i);
         if (current == null) {
-            MyListNode last = getNodeWithI(i - 1);
+            MyDoubleListNode last = getNodeWithI(i - 1);
             last.setNext(node);
             node.setPrev(last);
             node.setNext(null);
@@ -133,7 +134,7 @@ public class CosmicSystem {
         return true;
     }
 
-    public boolean remove(MyListNode del) {
+    public boolean remove(MyDoubleListNode del) {
         if (head == null || del == null) return false;
         if (head == del && head.next() != null) {
             head = del.next();
@@ -153,7 +154,7 @@ public class CosmicSystem {
     public boolean remove(int i) {
         //TODO: implement method.
         if (i < 0 || i > size()) return false;
-        MyListNode del = getNodeWithI(i);
+        MyDoubleListNode del = getNodeWithI(i);
         return remove(del);
     }
 
@@ -161,7 +162,7 @@ public class CosmicSystem {
     //returns true if removal was done, and false otherwise (no body with the same name)
     public boolean remove(Body body) {
         //TODO: implement method.
-        MyListNode del = getNodeWithBody(body);
+        MyDoubleListNode del = getNodeWithBody(body);
         return remove(del);
     }
 
@@ -169,7 +170,7 @@ public class CosmicSystem {
     // is not changed and only the references to the bodies are copied, not their content (shallow copy).
     public CosmicSystem reverse() {
         //TODO: implement method.
-        MyListNode current = head, temp = null;
+        MyDoubleListNode current = head, temp = null;
 
         /* swap next and prev for all nodes of
          doubly linked list */
@@ -197,7 +198,7 @@ public class CosmicSystem {
     //Hint: also use toString() in Body.java for this.
     public String toString() {
         //TODO: implement method.
-        MyListNode current = head;
+        MyDoubleListNode current = head;
         String output = getName() + ":\n";
         for (int i = 0; i < size(); i++) {
             output += current.value().toString() + "\n";

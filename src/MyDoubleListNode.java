@@ -1,30 +1,29 @@
-public class MyListNode {
+public class MyDoubleListNode {
     private Body value;
-    private MyListNode next;
-    private MyListNode prev;
+    private MyDoubleListNode next;
+    private MyDoubleListNode prev;
 
-    public MyListNode(Body v) {
+    public MyDoubleListNode(Body v) {
         this.value = v;
-        this.next = null;
     }
 
     public Body value() {
         return value;
     }
 
-    public MyListNode next() {
+    public MyDoubleListNode next() {
         return next;
     }
 
-    public MyListNode prev() {
+    public MyDoubleListNode prev() {
         return prev;
     }
 
-    public void setNext(MyListNode n) {
+    public void setNext(MyDoubleListNode n) {
         next = n;
     }
 
-    public void setPrev(MyListNode n) {
+    public void setPrev(MyDoubleListNode n) {
         prev = n;
     }
 
